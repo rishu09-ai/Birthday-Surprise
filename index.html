@@ -3,180 +3,99 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Birthday Surprise</title>
-
-<style>
-body{
-  margin:0;
-  font-family:"Comic Sans MS", cursive;
-  background:#f8c9dc;
-  text-align:center;
-}
-
-/* PAGE CONTROL */
-.page{
-  display:none;
-  min-height:100vh;
-  padding:25px 15px;
-}
-.page.active{display:block}
-
-/* TEXT */
-h1{
-  color:#e94b86;
-  margin-bottom:10px;
-}
-p{color:#333}
-
-/* BUTTON */
-.btn{
-  background:#f06292;
-  color:white;
-  border:none;
-  padding:12px 25px;
-  border-radius:25px;
-  font-size:16px;
-  margin-top:20px;
-  cursor:pointer;
-}
-
-/* CAKE */
-.cake-wrap{
-  margin:30px auto;
-  width:220px;
-  height:170px;
-  position:relative;
-}
-.cake{
-  width:220px;
-  height:120px;
-  background:#7b3f00;
-  position:absolute;
-  bottom:0;
-  border-radius:0 0 20px 20px;
-}
-.cream{
-  width:220px;
-  height:40px;
-  background:#ffc0cb;
-  position:absolute;
-  top:0;
-  border-radius:20px 20px 0 0;
-}
-.candle{
-  width:10px;
-  height:35px;
-  background:#ff4d4d;
-  position:absolute;
-  top:-35px;
-  left:105px;
-  border-radius:5px;
-}
-.flame{
-  width:12px;
-  height:16px;
-  background:orange;
-  border-radius:50%;
-  position:absolute;
-  top:-16px;
-  left:-1px;
-  animation:flicker .6s infinite;
-}
-@keyframes flicker{
-  0%{transform:scale(1)}
-  50%{transform:scale(1.2)}
-  100%{transform:scale(1)}
-}
-.cut{
-  position:absolute;
-  top:0;
-  left:50%;
-  width:4px;
-  height:0;
-  background:white;
-  box-shadow:0 0 8px white;
-}
-.hide{display:none}
-</style>
+<title>A Birthday Love Letter</title>
+<link rel="stylesheet" href="style.css">
 </head>
-
 <body>
 
-<!-- PAGE 1 : WISH -->
-<div class="page active">
-  <h1>Time to Make a Wish ✨</h1>
-  <p>Close your eyes and make your birthday wish!</p>
-  <button class="btn" onclick="next()">I've Made My Wish ⭐</button>
-</div>
+<div class="screen active" id="page1">
+  <h1>A Birthday Love Letter 💌</h1>
+  <p>From my heart to the birthday queen</p>
 
-<!-- PAGE 2 : CAKE -->
-<div class="page">
-  <h1>It's Cake Time! 🎂</h1>
-  <p>Drag across the cake to cut ✂️</p>
-
-  <div class="cake-wrap" id="cakeArea">
-    <div class="cream"></div>
-    <div class="cake"></div>
-    <div class="candle"><div class="flame"></div></div>
-    <div class="cut" id="cutLine"></div>
+  <div class="letter-card">
+    <h3>To My Birthday Princess</h3>
+    <p class="pink">My dearest Anupriya,</p>
+    <p>
+      Today marks another year of your incredible existence, and I couldn't
+      be more grateful to celebrate it with you.
+    </p>
+    <span class="sign">Forever yours 💕</span>
   </div>
 
-  <button id="cakeDone" class="btn hide" onclick="next()">
-    Cake Cut Successfully 🎉
-  </button>
+  <button onclick="nextPage()">Continue ✨</button>
 </div>
 
-<!-- PAGE 3 : CARDS -->
-<div class="page">
+<!-- Envelope -->
+<div class="screen" id="page2">
+  <h1>A Birthday Love Letter 💌</h1>
+  <div class="envelope" onclick="nextPage()">
+    <div class="seal">💖</div>
+  </div>
+  <p>Click to open your birthday surprise</p>
+  <button onclick="nextPage()">Birthday Special Delivery 🎂</button>
+</div>
+
+<!-- Wish Page -->
+<div class="screen" id="page3">
+  <h1>It's Cake Time! 🎂</h1>
+  <p>Make your birthday wish come true!</p>
+
+  <div class="cat-box">
+    <img src="https://i.imgur.com/3ZQ3ZQb.png">
+  </div>
+
+  <h2>Time to Make a Wish ✨</h2>
+  <p>Close your eyes and make your birthday wish!</p>
+
+  <button onclick="nextPage()">I've Made My Wish! 💫</button>
+</div>
+
+<!-- Cake Cutting -->
+<div class="screen" id="page4">
+  <h1>It's Cake Time! 🎂</h1>
+  <p>Cut your birthday cake, birthday girl!</p>
+
+  <div class="cake">
+    <div class="candle"></div>
+  </div>
+
+  <p class="hint">Drag across the cake to cut ✂️</p>
+
+  <button onclick="nextPage()">Continue 🎉</button>
+</div>
+
+<!-- Birthday Cards -->
+<div class="screen" id="page5">
   <h1>Birthday Wishes Cards 🎁</h1>
   <p>Click each card to reveal a message</p>
-  <p>💖 🎂 ✨</p>
-  <button class="btn" onclick="next()">Open Final Birthday Letter 💌</button>
+
+  <div class="cards">
+    <div class="card">💖</div>
+    <div class="card">🎂</div>
+    <div class="card">✨</div>
+  </div>
+
+  <button onclick="nextPage()">Open Final Birthday Letter 💌</button>
 </div>
 
-<!-- PAGE 4 : FINAL LETTER -->
-<div class="page">
+<!-- Final Letter -->
+<div class="screen" id="page6">
   <h1>Final Birthday Letter 💕</h1>
-  <p style="color:#e94b86">My dearest girl,</p>
-  <p>
-    May this new year bring you happiness, love and endless smiles.
-  </p>
-  <p style="color:#6a9dfc">
-    Happy Birthday 🎂✨
-  </p>
+
+  <div class="letter-card">
+    <p class="pink">My dearest girl,</p>
+    <p>
+      May this new year bring you everything your heart desires and more joy
+      than you can imagine.
+    </p>
+    <p class="blue">
+      Happy Birthday, my love. You deserve the world and so much more. 🎂✨
+    </p>
+  </div>
+
+  <button onclick="restart()">Experience Again 🔁</button>
 </div>
 
-<script>
-let current=0;
-const pages=document.querySelectorAll(".page");
-
-function next(){
-  pages[current].classList.remove("active");
-  current++;
-  pages[current].classList.add("active");
-}
-
-/* CAKE CUT LOGIC */
-let cake=document.getElementById("cakeArea");
-let line=document.getElementById("cutLine");
-let btn=document.getElementById("cakeDone");
-let cutting=false;
-
-cake.addEventListener("mousedown",()=>cutting=true);
-cake.addEventListener("touchstart",()=>cutting=true);
-
-cake.addEventListener("mousemove",cut);
-cake.addEventListener("touchmove",cut);
-
-function cut(){
-  if(!cutting) return;
-  line.style.height="120px";
-  setTimeout(()=>{
-    btn.classList.remove("hide");
-    cutting=false;
-  },300);
-}
-</script>
-
+<script src="script.js"></script>
 </body>
 </html>
