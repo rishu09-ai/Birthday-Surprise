@@ -8,21 +8,22 @@
 </head>
 <body>
 
-<canvas id="fireworks"></canvas>
-
-<!-- PAGE 1 -->
+<!-- PAGE 1 : REALISTIC ENVELOPE -->
 <section class="page active" id="page1">
   <h1>A Birthday Love Letter 💌</h1>
-  <p>From my heart to the birthday queen</p>
+  <p class="subtitle">From my heart to the birthday queen</p>
 
-  <div class="envelope" onclick="nextPage(2)">
-    <div class="heart">💗</div>
+  <div class="real-envelope" onclick="openEnvelope()">
+    <div class="envelope-flap"></div>
+    <div class="envelope-body">
+      <span class="seal">💖</span>
+    </div>
   </div>
 
   <button class="primary">Birthday Special Delivery 🎂</button>
 </section>
 
-<!-- PAGE 2 -->
+<!-- PAGE 2 : LETTER -->
 <section class="page" id="page2">
   <h2>To My Birthday Princess 💖</h2>
 
@@ -30,24 +31,30 @@
     <p class="handwrite">
       My dearest Anupriya,<br><br>
       Today marks another year of your incredible existence.
-      You bring joy, laughter and love into my life.
-      You deserve all the magic, dreams and happiness this world has to offer.
+      You bring joy, laughter, and love into my life.
+      You deserve all the magic, dreams, and happiness this world has to offer.
     </p>
     <span class="sign">Forever yours 💕</span>
   </div>
 
-  <button class="primary" onclick="nextPage(3)">Continue ✨</button>
+  <button onclick="nextPage(3)" class="primary">Continue ✨</button>
 </section>
 
-<!-- PAGE 3 : CAKE CUT -->
+<!-- PAGE 3 : REAL CAKE CUT -->
 <section class="page" id="page3">
   <h1>It's Cake Time! 🎂</h1>
-  <p id="cutText">Drag across the cake to cut 🎂</p>
+  <p>Drag your finger or mouse to cut the cake</p>
 
-  <div class="cake-cut">
-    <div class="cake-top"></div>
-    <div class="cut-line"></div>
+  <div class="cake-area">
+    <img id="cakeImage"
+         src="https://i.imgur.com/7QKQZ4G.png"
+         draggable="false">
+    <canvas id="cutCanvas"></canvas>
   </div>
+
+  <button id="cakeBtn" class="primary" disabled>
+    Cake Cut Successfully 🎉
+  </button>
 </section>
 
 <!-- PAGE 4 : WISH CARDS -->
@@ -62,12 +69,12 @@
 
   <p id="counter">0 of 3 birthday wishes unlocked</p>
 
-  <button class="primary" onclick="nextPage(5)">
+  <button onclick="nextPage(5)" class="primary">
     Open Final Birthday Letter 💌
   </button>
 </section>
 
-<!-- PAGE 5 : FINAL -->
+<!-- PAGE 5 : FINAL LETTER -->
 <section class="page" id="page5">
   <h1>Final Birthday Letter 💝</h1>
 
@@ -81,7 +88,9 @@
   </div>
 
   <button class="primary">Seal The Letter 💌</button>
-  <button class="secondary" onclick="location.reload()">Experience Again 🔄</button>
+  <button class="secondary" onclick="location.reload()">
+    Experience Again 🔄
+  </button>
 </section>
 
 <script src="script.js"></script>
