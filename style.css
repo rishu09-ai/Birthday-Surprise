@@ -1,0 +1,138 @@
+* {
+  font-family: 'Comic Sans MS', cursive;
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: linear-gradient(#fff1f6, #ffe6ef);
+  text-align: center;
+}
+
+.page {
+  display: none;
+  padding: 30px 15px;
+  min-height: 100vh;
+}
+
+.page.active {
+  display: block;
+  animation: fade 0.8s ease;
+}
+
+@keyframes fade {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; }
+}
+
+h1, h2 {
+  color: #ff4d8d;
+}
+
+.primary {
+  background: #ff4d8d;
+  color: white;
+  border: none;
+  padding: 14px 30px;
+  border-radius: 30px;
+  font-size: 16px;
+  margin-top: 20px;
+}
+
+.secondary {
+  background: #9be3c2;
+  border: none;
+  padding: 14px 30px;
+  border-radius: 30px;
+  margin-top: 10px;
+}
+
+.envelope {
+  width: 220px;
+  height: 140px;
+  background: #ffd6e5;
+  margin: 40px auto;
+  border-radius: 12px;
+  cursor: pointer;
+}
+
+.heart {
+  font-size: 40px;
+  line-height: 140px;
+}
+
+.card {
+  background: white;
+  border-radius: 20px;
+  padding: 25px;
+  margin: 25px auto;
+  max-width: 360px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+}
+
+.handwrite {
+  font-style: italic;
+  color: #444;
+}
+
+.sign {
+  display: block;
+  margin-top: 20px;
+  color: #ff4d8d;
+}
+
+.cake-cut {
+  width: 240px;
+  height: 140px;
+  background: #8b4513;
+  border-radius: 12px;
+  margin: 30px auto;
+  position: relative;
+  touch-action: none;
+}
+
+.cake-top {
+  height: 40%;
+  background: pink;
+  border-radius: 12px 12px 0 0;
+}
+
+.cut-line {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 4px;
+  height: 0;
+  background: white;
+  transition: height 0.4s;
+}
+
+.cards {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin: 30px 0;
+}
+
+.wish {
+  width: 80px;
+  height: 80px;
+  background: #ffe3ef;
+  border-radius: 16px;
+  font-size: 32px;
+  line-height: 80px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.wish.open {
+  background: #ffb6d5;
+  transform: scale(1.1);
+}
+
+#fireworks {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 999;
+}
