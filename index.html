@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Happy Birthday Raushani</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family: 'Segoe UI', sans-serif;
+}
+body{
+  background:black;
+  color:white;
+  overflow:hidden;
+}
+
+/* SCENE */
+.scene{
+  display:none;
+  height:100vh;
+  width:100vw;
+  justify-content:center;
+  align-items:center;
+  flex-direction:column;
+  text-align:center;
+  padding:20px;
+}
+.scene.active{
+  display:flex;
+}
+
+/* TEXT ANIMATION */
+.fade{
+  animation:fadeIn 1.8s ease;
+}
+@keyframes fadeIn{
+  from{opacity:0; transform:translateY(30px);}
+  to{opacity:1; transform:translateY(0);}
+}
+
+h1{font-size:2.6em;}
+p{font-size:1.4em; margin-top:15px;}
+
+/* COUNTDOWN */
+#count{
+  font-size:5em;
+  margin-top:20px;
+}
+
+/* FIREWORKS */
+.firework{
+  position:absolute;
+  width:6px;
+  height:6px;
+  background:white;
+  border-radius:50%;
+  animation:explode 1.4s infinite;
+}
+@keyframes explode{
+  from{transform:scale(0); opacity:1;}
+  to{transform:scale(6); opacity:0;}
+}
+
+/* CAKE */
+.cake{
+  font-size:90px;
+  animation:bounce 1.5s infinite;
+}
+@keyframes bounce{
+  0%,100%{transform:translateY(0);}
+  50%{transform:translateY(-25px);}
+}
+
+/* TAP HINT */
+.tap{
+  position:absolute;
+  bottom:18px;
+  font-size:14px;
+  opacity:0.6;
+}
+</style>
+</head>
+
+<body onclick="nextScene()">
+
+<!-- SCENE 1 -->
+<div class="scene active">
+  <h1 class="fade">Hey Raushani 💖</h1>
+  <p class="fade">Today is your special day</p>
+  <div class="tap">Tap anywhere</div>
+</div>
+
+<!-- SCENE 2 -->
+<div class="scene">
+  <h1 class="fade">A very special person 🎉</h1>
+  <p class="fade">Was born today</p>
+</div>
+
+<!-- SCENE 3 -->
+<div class="scene">
+  <h1 class="fade">Countdown Begins</h1>
+  <div id="count" class="fade">3</div>
+</div>
+
+<!-- SCENE 4 -->
+<div class="scene">
+  <h1 class="fade">🎆 HAPPY BIRTHDAY 🎆</h1>
+  <p class="fade">Raushani ❤️</p>
+</div>
+
+<!-- SCENE 5 -->
+<div class="scene">
+  <div class="cake">🎂</div>
+  <h1 class="fade">Cut the Cake</h1>
+  <p class="fade">Make a wish ✨</p>
+</div>
+
+<!-- SCENE 6 -->
+<div class="scene">
+  <h1 class="fade">Best Wishes 💌</h1>
+  <p class="fade">
+    May your life be full of happiness,<br>
+    smiles and beautiful moments.<br><br>
+    Happy Birthday Raushani ❤️
+  </p>
+</div>
+
+<script>
+let current = 0;
+const scenes = document.querySelectorAll(".scene");
+
+function nextScene(){
+  scenes[current].classList.remove("active");
+  current++;
+  if(current >= scenes.length){
+    current = scenes.length - 1;
+    return;
+  }
+  scenes[current].classList.add("active");
+}
+
+/* COUNTDOWN LOGIC */
+let c = 3;
+setInterval(()=>{
+  const el = document.getElementById("count");
+  if(el && c > 1){
+    c--;
+    el.innerText = c;
+  }
+},1000);
+
+/* FIREWORKS LOGIC */
+setInterval(()=>{
+  const fw = document.createElement("div");
+  fw.className = "firework";
+  fw.style.left = Math.random()*100 + "vw";
+  fw.style.top = Math.random()*100 + "vh";
+  document.body.appendChild(fw);
+  setTimeout(()=>fw.remove(),1400);
+},260);
+</script>
+
+</body>
+</html>
