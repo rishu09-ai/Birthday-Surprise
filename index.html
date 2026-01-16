@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Happy Birthday Raushani</title>
+<title>Birthday Wish</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
@@ -10,11 +10,15 @@
   margin:0;
   padding:0;
   box-sizing:border-box;
-  font-family: Segoe UI, sans-serif;
+  font-family: "Segoe UI", sans-serif;
 }
+
 body{
-  background:#000;
-  color:#fff;
+  height:100vh;
+  background:
+    radial-gradient(circle at top, #1a2a44, #000 60%),
+    linear-gradient(180deg, #0a0f1c, #000);
+  color:white;
   overflow:hidden;
   cursor:pointer;
 }
@@ -28,112 +32,67 @@ body{
   align-items:center;
   flex-direction:column;
   text-align:center;
-  padding:20px;
 }
+
 .scene.active{
   display:flex;
 }
 
-/* TEXT ANIMATION */
-.fade{
-  animation:fadeIn 1.5s ease forwards;
-}
-@keyframes fadeIn{
-  from{opacity:0; transform:translateY(25px);}
-  to{opacity:1; transform:translateY(0);}
+/* TEXT STYLE */
+.main-text{
+  font-size:3rem;
+  font-weight:600;
+  animation:fadeUp 1.2s ease forwards;
 }
 
-h1{font-size:2.6em;}
-p{font-size:1.4em;margin-top:14px;}
-
-/* COUNTDOWN */
-#count{
-  font-size:5em;
-  margin-top:20px;
+.sub-text{
+  margin-top:12px;
+  font-size:1.3rem;
+  opacity:0.9;
+  animation:fadeUp 1.6s ease forwards;
 }
 
-/* FIREWORK */
-.firework{
-  position:absolute;
-  width:6px;
-  height:6px;
-  background:white;
-  border-radius:50%;
-  animation:explode 1.4s infinite;
-}
-@keyframes explode{
-  from{transform:scale(0);opacity:1;}
-  to{transform:scale(6);opacity:0;}
-}
-
-/* CAKE */
-.cake{
-  font-size:90px;
-  animation:bounce 1.4s infinite;
-}
-@keyframes bounce{
-  0%,100%{transform:translateY(0);}
-  50%{transform:translateY(-22px);}
+/* ANIMATION */
+@keyframes fadeUp{
+  from{
+    opacity:0;
+    transform:translateY(25px);
+  }
+  to{
+    opacity:1;
+    transform:translateY(0);
+  }
 }
 
 /* TAP HINT */
 .tap{
   position:absolute;
-  bottom:18px;
+  bottom:20px;
   font-size:14px;
-  opacity:0.6;
+  opacity:0.5;
 }
 </style>
 </head>
 
 <body>
 
-<!-- SCENE 1 -->
+<!-- SCENE 1 (EXACT FRAME YOU SHARED) -->
 <div class="scene active">
-  <h1 class="fade">Hey Raushani 💖</h1>
-  <p class="fade">Today is your special day</p>
+  <div class="main-text">A very special person</div>
+  <div class="sub-text">Was born today 👋 🎉</div>
   <div class="tap">Tap anywhere</div>
 </div>
 
-<!-- SCENE 2 -->
+<!-- SCENE 2 (NEXT VIDEO FRAME PLACEHOLDER) -->
 <div class="scene">
-  <h1 class="fade">A very special person 🎉</h1>
-  <p class="fade">Was born today</p>
-</div>
-
-<!-- SCENE 3 -->
-<div class="scene">
-  <h1 class="fade">Countdown Begins</h1>
-  <div id="count" class="fade">3</div>
-</div>
-
-<!-- SCENE 4 -->
-<div class="scene">
-  <h1 class="fade">🎆 HAPPY BIRTHDAY 🎆</h1>
-  <p class="fade">Raushani ❤️</p>
-</div>
-
-<!-- SCENE 5 -->
-<div class="scene">
-  <div class="cake">🎂</div>
-  <h1 class="fade">Cut the Cake</h1>
-</div>
-
-<!-- SCENE 6 -->
-<div class="scene">
-  <h1 class="fade">Best Wishes 💌</h1>
-  <p class="fade">
-    May your life be full of happiness,<br>
-    smiles and beautiful moments.<br><br>
-    Happy Birthday Raushani ❤️
-  </p>
+  <div class="main-text">Hey Raushani 💖</div>
 </div>
 
 <script>
 const scenes = document.querySelectorAll(".scene");
 let current = 0;
 
-/* CLICK → NEXT SCENE */
+/* CLICK → NEXT (like recorded video) */
 document.body.addEventListener("click", () => {
   scenes[current].classList.remove("active");
   current++;
@@ -143,28 +102,6 @@ document.body.addEventListener("click", () => {
   }
   scenes[current].classList.add("active");
 });
-
-/* COUNTDOWN (only when visible) */
-let c = 3;
-setInterval(()=>{
-  const el = document.getElementById("count");
-  if(el && c > 1 && scenes[2].classList.contains("active")){
-    c--;
-    el.innerText = c;
-  }
-},1000);
-
-/* FIREWORKS (only scene 4+) */
-setInterval(()=>{
-  if(current >= 3){
-    const fw = document.createElement("div");
-    fw.className = "firework";
-    fw.style.left = Math.random()*100+"vw";
-    fw.style.top = Math.random()*100+"vh";
-    document.body.appendChild(fw);
-    setTimeout(()=>fw.remove(),1400);
-  }
-},260);
 </script>
 
 </body>
