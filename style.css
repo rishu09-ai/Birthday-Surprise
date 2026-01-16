@@ -1,6 +1,6 @@
 * {
-  font-family: 'Comic Sans MS', cursive;
   box-sizing: border-box;
+  font-family: "Comic Sans MS", cursive;
 }
 
 body {
@@ -21,48 +21,85 @@ body {
 }
 
 @keyframes fade {
-  from { opacity: 0; transform: translateY(20px); }
-  to { opacity: 1; }
+  from {opacity: 0; transform: translateY(20px);}
+  to {opacity: 1; transform: translateY(0);}
 }
 
 h1, h2 {
   color: #ff4d8d;
 }
 
+.subtitle {
+  color: #777;
+}
+
+/* Buttons */
 .primary {
   background: #ff4d8d;
-  color: white;
+  color: #fff;
   border: none;
-  padding: 14px 30px;
+  padding: 14px 28px;
   border-radius: 30px;
   font-size: 16px;
   margin-top: 20px;
 }
 
+.primary:disabled {
+  opacity: 0.5;
+}
+
 .secondary {
   background: #9be3c2;
   border: none;
-  padding: 14px 30px;
+  padding: 14px 28px;
   border-radius: 30px;
   margin-top: 10px;
 }
 
-.envelope {
-  width: 220px;
-  height: 140px;
-  background: #ffd6e5;
+/* Envelope */
+.real-envelope {
+  width: 260px;
+  height: 170px;
   margin: 40px auto;
-  border-radius: 12px;
+  position: relative;
   cursor: pointer;
 }
 
-.heart {
-  font-size: 40px;
-  line-height: 140px;
+.envelope-body {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(#ffdbe8, #ffc0d6);
+  border-radius: 12px;
+  box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+  position: relative;
 }
 
+.envelope-flap {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 50%;
+  background: #ff9fc2;
+  clip-path: polygon(0 0, 100% 0, 50% 100%);
+  transform-origin: top;
+  transition: transform 0.6s;
+}
+
+.real-envelope.open .envelope-flap {
+  transform: rotateX(180deg);
+}
+
+.seal {
+  font-size: 36px;
+  position: absolute;
+  top: 60px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+/* Letter card */
 .card {
-  background: white;
+  background: #fff;
   border-radius: 20px;
   padding: 25px;
   margin: 25px auto;
@@ -81,32 +118,26 @@ h1, h2 {
   color: #ff4d8d;
 }
 
-.cake-cut {
-  width: 240px;
-  height: 140px;
-  background: #8b4513;
-  border-radius: 12px;
-  margin: 30px auto;
+/* Cake */
+.cake-area {
   position: relative;
-  touch-action: none;
+  width: 280px;
+  margin: 30px auto;
 }
 
-.cake-top {
-  height: 40%;
-  background: pink;
-  border-radius: 12px 12px 0 0;
+.cake-area img {
+  width: 100%;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.2);
 }
 
-.cut-line {
+#cutCanvas {
   position: absolute;
   top: 0;
-  left: 50%;
-  width: 4px;
-  height: 0;
-  background: white;
-  transition: height 0.4s;
+  left: 0;
 }
 
+/* Wish cards */
 .cards {
   display: flex;
   justify-content: center;
@@ -128,11 +159,4 @@ h1, h2 {
 .wish.open {
   background: #ffb6d5;
   transform: scale(1.1);
-}
-
-#fireworks {
-  position: fixed;
-  inset: 0;
-  pointer-events: none;
-  z-index: 999;
 }
