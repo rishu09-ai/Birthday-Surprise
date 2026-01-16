@@ -1,100 +1,97 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>A Birthday Love Letter</title>
-<link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <title>Birthday Love Letter</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<div class="screen active" id="page1">
+<!-- PAGE 1 : REALISTIC ENVELOPE -->
+<section class="page active" id="page1">
   <h1>A Birthday Love Letter 💌</h1>
-  <p>From my heart to the birthday queen</p>
+  <p class="subtitle">From my heart to the birthday queen</p>
 
-  <div class="letter-card">
-    <h3>To My Birthday Princess</h3>
-    <p class="pink">My dearest Anupriya,</p>
-    <p>
-      Today marks another year of your incredible existence, and I couldn't
-      be more grateful to celebrate it with you.
+  <div class="real-envelope" onclick="openEnvelope()">
+    <div class="envelope-flap"></div>
+    <div class="envelope-body">
+      <span class="seal">💖</span>
+    </div>
+  </div>
+
+  <button class="primary">Birthday Special Delivery 🎂</button>
+</section>
+
+<!-- PAGE 2 : LETTER -->
+<section class="page" id="page2">
+  <h2>To My Birthday Princess 💖</h2>
+
+  <div class="card">
+    <p class="handwrite">
+      My dearest Anupriya,<br><br>
+      Today marks another year of your incredible existence.
+      You bring joy, laughter, and love into my life.
+      You deserve all the magic, dreams, and happiness this world has to offer.
     </p>
     <span class="sign">Forever yours 💕</span>
   </div>
 
-  <button onclick="nextPage()">Continue ✨</button>
-</div>
+  <button onclick="nextPage(3)" class="primary">Continue ✨</button>
+</section>
 
-<!-- Envelope -->
-<div class="screen" id="page2">
-  <h1>A Birthday Love Letter 💌</h1>
-  <div class="envelope" onclick="nextPage()">
-    <div class="seal">💖</div>
-  </div>
-  <p>Click to open your birthday surprise</p>
-  <button onclick="nextPage()">Birthday Special Delivery 🎂</button>
-</div>
-
-<!-- Wish Page -->
-<div class="screen" id="page3">
+<!-- PAGE 3 : REAL CAKE CUT -->
+<section class="page" id="page3">
   <h1>It's Cake Time! 🎂</h1>
-  <p>Make your birthday wish come true!</p>
+  <p>Drag your finger or mouse to cut the cake</p>
 
-  <div class="cat-box">
-    <img src="https://i.imgur.com/3ZQ3ZQb.png">
+  <div class="cake-area">
+    <img id="cakeImage"
+         src="https://i.imgur.com/7QKQZ4G.png"
+         draggable="false">
+    <canvas id="cutCanvas"></canvas>
   </div>
 
-  <h2>Time to Make a Wish ✨</h2>
-  <p>Close your eyes and make your birthday wish!</p>
+  <button id="cakeBtn" class="primary" disabled>
+    Cake Cut Successfully 🎉
+  </button>
+</section>
 
-  <button onclick="nextPage()">I've Made My Wish! 💫</button>
-</div>
-
-<!-- Cake Cutting -->
-<div class="screen" id="page4">
-  <h1>It's Cake Time! 🎂</h1>
-  <p>Cut your birthday cake, birthday girl!</p>
-
-  <div class="cake">
-    <div class="candle"></div>
-  </div>
-
-  <p class="hint">Drag across the cake to cut ✂️</p>
-
-  <button onclick="nextPage()">Continue 🎉</button>
-</div>
-
-<!-- Birthday Cards -->
-<div class="screen" id="page5">
+<!-- PAGE 4 : WISH CARDS -->
+<section class="page" id="page4">
   <h1>Birthday Wishes Cards 🎁</h1>
-  <p>Click each card to reveal a message</p>
 
   <div class="cards">
-    <div class="card">💖</div>
-    <div class="card">🎂</div>
-    <div class="card">✨</div>
+    <div class="wish" onclick="unlock(this)">💖</div>
+    <div class="wish" onclick="unlock(this)">✨</div>
+    <div class="wish" onclick="unlock(this)">🎀</div>
   </div>
 
-  <button onclick="nextPage()">Open Final Birthday Letter 💌</button>
-</div>
+  <p id="counter">0 of 3 birthday wishes unlocked</p>
 
-<!-- Final Letter -->
-<div class="screen" id="page6">
-  <h1>Final Birthday Letter 💕</h1>
+  <button onclick="nextPage(5)" class="primary">
+    Open Final Birthday Letter 💌
+  </button>
+</section>
 
-  <div class="letter-card">
-    <p class="pink">My dearest girl,</p>
-    <p>
-      May this new year bring you everything your heart desires and more joy
-      than you can imagine.
-    </p>
-    <p class="blue">
-      Happy Birthday, my love. You deserve the world and so much more. 🎂✨
+<!-- PAGE 5 : FINAL LETTER -->
+<section class="page" id="page5">
+  <h1>Final Birthday Letter 💝</h1>
+
+  <div class="card">
+    <p class="handwrite">
+      My dearest girl,<br><br>
+      May this new year bring you everything your heart desires
+      and more joy than you can imagine.<br><br>
+      Happy Birthday my love 🎂✨
     </p>
   </div>
 
-  <button onclick="restart()">Experience Again 🔁</button>
-</div>
+  <button class="primary">Seal The Letter 💌</button>
+  <button class="secondary" onclick="location.reload()">
+    Experience Again 🔄
+  </button>
+</section>
 
 <script src="script.js"></script>
 </body>
