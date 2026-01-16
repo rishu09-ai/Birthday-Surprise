@@ -10,12 +10,13 @@
   margin:0;
   padding:0;
   box-sizing:border-box;
-  font-family: 'Segoe UI', sans-serif;
+  font-family: Segoe UI, sans-serif;
 }
 body{
-  background:black;
-  color:white;
+  background:#000;
+  color:#fff;
   overflow:hidden;
+  cursor:pointer;
 }
 
 /* SCENE */
@@ -35,15 +36,15 @@ body{
 
 /* TEXT ANIMATION */
 .fade{
-  animation:fadeIn 1.8s ease;
+  animation:fadeIn 1.5s ease forwards;
 }
 @keyframes fadeIn{
-  from{opacity:0; transform:translateY(30px);}
+  from{opacity:0; transform:translateY(25px);}
   to{opacity:1; transform:translateY(0);}
 }
 
 h1{font-size:2.6em;}
-p{font-size:1.4em; margin-top:15px;}
+p{font-size:1.4em;margin-top:14px;}
 
 /* COUNTDOWN */
 #count{
@@ -51,7 +52,7 @@ p{font-size:1.4em; margin-top:15px;}
   margin-top:20px;
 }
 
-/* FIREWORKS */
+/* FIREWORK */
 .firework{
   position:absolute;
   width:6px;
@@ -61,18 +62,18 @@ p{font-size:1.4em; margin-top:15px;}
   animation:explode 1.4s infinite;
 }
 @keyframes explode{
-  from{transform:scale(0); opacity:1;}
-  to{transform:scale(6); opacity:0;}
+  from{transform:scale(0);opacity:1;}
+  to{transform:scale(6);opacity:0;}
 }
 
 /* CAKE */
 .cake{
   font-size:90px;
-  animation:bounce 1.5s infinite;
+  animation:bounce 1.4s infinite;
 }
 @keyframes bounce{
   0%,100%{transform:translateY(0);}
-  50%{transform:translateY(-25px);}
+  50%{transform:translateY(-22px);}
 }
 
 /* TAP HINT */
@@ -85,7 +86,7 @@ p{font-size:1.4em; margin-top:15px;}
 </style>
 </head>
 
-<body onclick="nextScene()">
+<body>
 
 <!-- SCENE 1 -->
 <div class="scene active">
@@ -116,7 +117,6 @@ p{font-size:1.4em; margin-top:15px;}
 <div class="scene">
   <div class="cake">🎂</div>
   <h1 class="fade">Cut the Cake</h1>
-  <p class="fade">Make a wish ✨</p>
 </div>
 
 <!-- SCENE 6 -->
@@ -130,10 +130,11 @@ p{font-size:1.4em; margin-top:15px;}
 </div>
 
 <script>
-let current = 0;
 const scenes = document.querySelectorAll(".scene");
+let current = 0;
 
-function nextScene(){
+/* CLICK → NEXT SCENE */
+document.body.addEventListener("click", () => {
   scenes[current].classList.remove("active");
   current++;
   if(current >= scenes.length){
@@ -141,26 +142,28 @@ function nextScene(){
     return;
   }
   scenes[current].classList.add("active");
-}
+});
 
-/* COUNTDOWN LOGIC */
+/* COUNTDOWN (only when visible) */
 let c = 3;
 setInterval(()=>{
   const el = document.getElementById("count");
-  if(el && c > 1){
+  if(el && c > 1 && scenes[2].classList.contains("active")){
     c--;
     el.innerText = c;
   }
 },1000);
 
-/* FIREWORKS LOGIC */
+/* FIREWORKS (only scene 4+) */
 setInterval(()=>{
-  const fw = document.createElement("div");
-  fw.className = "firework";
-  fw.style.left = Math.random()*100 + "vw";
-  fw.style.top = Math.random()*100 + "vh";
-  document.body.appendChild(fw);
-  setTimeout(()=>fw.remove(),1400);
+  if(current >= 3){
+    const fw = document.createElement("div");
+    fw.className = "firework";
+    fw.style.left = Math.random()*100+"vw";
+    fw.style.top = Math.random()*100+"vh";
+    document.body.appendChild(fw);
+    setTimeout(()=>fw.remove(),1400);
+  }
 },260);
 </script>
 
