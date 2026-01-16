@@ -1,171 +1,89 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<title>Happy Birthday Raushani</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<style>
-*{
-  margin:0;
-  padding:0;
-  box-sizing:border-box;
-  font-family: Segoe UI, sans-serif;
-}
-body{
-  background:#000;
-  color:#fff;
-  overflow:hidden;
-  cursor:pointer;
-}
-
-/* SCENE */
-.scene{
-  display:none;
-  height:100vh;
-  width:100vw;
-  justify-content:center;
-  align-items:center;
-  flex-direction:column;
-  text-align:center;
-  padding:20px;
-}
-.scene.active{
-  display:flex;
-}
-
-/* TEXT ANIMATION */
-.fade{
-  animation:fadeIn 1.5s ease forwards;
-}
-@keyframes fadeIn{
-  from{opacity:0; transform:translateY(25px);}
-  to{opacity:1; transform:translateY(0);}
-}
-
-h1{font-size:2.6em;}
-p{font-size:1.4em;margin-top:14px;}
-
-/* COUNTDOWN */
-#count{
-  font-size:5em;
-  margin-top:20px;
-}
-
-/* FIREWORK */
-.firework{
-  position:absolute;
-  width:6px;
-  height:6px;
-  background:white;
-  border-radius:50%;
-  animation:explode 1.4s infinite;
-}
-@keyframes explode{
-  from{transform:scale(0);opacity:1;}
-  to{transform:scale(6);opacity:0;}
-}
-
-/* CAKE */
-.cake{
-  font-size:90px;
-  animation:bounce 1.4s infinite;
-}
-@keyframes bounce{
-  0%,100%{transform:translateY(0);}
-  50%{transform:translateY(-22px);}
-}
-
-/* TAP HINT */
-.tap{
-  position:absolute;
-  bottom:18px;
-  font-size:14px;
-  opacity:0.6;
-}
-</style>
+  <meta charset="UTF-8">
+  <title>Birthday Love Letter</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
 
-<!-- SCENE 1 -->
-<div class="scene active">
-  <h1 class="fade">Hey Raushani 💖</h1>
-  <p class="fade">Today is your special day</p>
-  <div class="tap">Tap anywhere</div>
-</div>
+<canvas id="fireworks"></canvas>
 
-<!-- SCENE 2 -->
-<div class="scene">
-  <h1 class="fade">A very special person 🎉</h1>
-  <p class="fade">Was born today</p>
-</div>
+<!-- PAGE 1 -->
+<section class="page active" id="page1">
+  <h1>A Birthday Love Letter 💌</h1>
+  <p>From my heart to the birthday queen</p>
 
-<!-- SCENE 3 -->
-<div class="scene">
-  <h1 class="fade">Countdown Begins</h1>
-  <div id="count" class="fade">3</div>
-</div>
+  <div class="envelope" onclick="nextPage(2)">
+    <div class="heart">💗</div>
+  </div>
 
-<!-- SCENE 4 -->
-<div class="scene">
-  <h1 class="fade">🎆 HAPPY BIRTHDAY 🎆</h1>
-  <p class="fade">Raushani ❤️</p>
-</div>
+  <button class="primary">Birthday Special Delivery 🎂</button>
+</section>
 
-<!-- SCENE 5 -->
-<div class="scene">
-  <div class="cake">🎂</div>
-  <h1 class="fade">Cut the Cake</h1>
-</div>
+<!-- PAGE 2 -->
+<section class="page" id="page2">
+  <h2>To My Birthday Princess 💖</h2>
 
-<!-- SCENE 6 -->
-<div class="scene">
-  <h1 class="fade">Best Wishes 💌</h1>
-  <p class="fade">
-    May your life be full of happiness,<br>
-    smiles and beautiful moments.<br><br>
-    Happy Birthday Raushani ❤️
-  </p>
-</div>
+  <div class="card">
+    <p class="handwrite">
+      My dearest Anupriya,<br><br>
+      Today marks another year of your incredible existence.
+      You bring joy, laughter and love into my life.
+      You deserve all the magic, dreams and happiness this world has to offer.
+    </p>
+    <span class="sign">Forever yours 💕</span>
+  </div>
 
-<script>
-const scenes = document.querySelectorAll(".scene");
-let current = 0;
+  <button class="primary" onclick="nextPage(3)">Continue ✨</button>
+</section>
 
-/* CLICK → NEXT SCENE */
-document.body.addEventListener("click", () => {
-  scenes[current].classList.remove("active");
-  current++;
-  if(current >= scenes.length){
-    current = scenes.length - 1;
-    return;
-  }
-  scenes[current].classList.add("active");
-});
+<!-- PAGE 3 : CAKE CUT -->
+<section class="page" id="page3">
+  <h1>It's Cake Time! 🎂</h1>
+  <p id="cutText">Drag across the cake to cut 🎂</p>
 
-/* COUNTDOWN (only when visible) */
-let c = 3;
-setInterval(()=>{
-  const el = document.getElementById("count");
-  if(el && c > 1 && scenes[2].classList.contains("active")){
-    c--;
-    el.innerText = c;
-  }
-},1000);
+  <div class="cake-cut">
+    <div class="cake-top"></div>
+    <div class="cut-line"></div>
+  </div>
+</section>
 
-/* FIREWORKS (only scene 4+) */
-setInterval(()=>{
-  if(current >= 3){
-    const fw = document.createElement("div");
-    fw.className = "firework";
-    fw.style.left = Math.random()*100+"vw";
-    fw.style.top = Math.random()*100+"vh";
-    document.body.appendChild(fw);
-    setTimeout(()=>fw.remove(),1400);
-  }
-},260);
-</script>
+<!-- PAGE 4 : WISH CARDS -->
+<section class="page" id="page4">
+  <h1>Birthday Wishes Cards 🎁</h1>
 
+  <div class="cards">
+    <div class="wish" onclick="unlock(this)">💖</div>
+    <div class="wish" onclick="unlock(this)">✨</div>
+    <div class="wish" onclick="unlock(this)">🎀</div>
+  </div>
+
+  <p id="counter">0 of 3 birthday wishes unlocked</p>
+
+  <button class="primary" onclick="nextPage(5)">
+    Open Final Birthday Letter 💌
+  </button>
+</section>
+
+<!-- PAGE 5 : FINAL -->
+<section class="page" id="page5">
+  <h1>Final Birthday Letter 💝</h1>
+
+  <div class="card">
+    <p class="handwrite">
+      My dearest girl,<br><br>
+      May this new year bring you everything your heart desires
+      and more joy than you can imagine.<br><br>
+      Happy Birthday my love 🎂✨
+    </p>
+  </div>
+
+  <button class="primary">Seal The Letter 💌</button>
+  <button class="secondary" onclick="location.reload()">Experience Again 🔄</button>
+</section>
+
+<script src="script.js"></script>
 </body>
 </html>
