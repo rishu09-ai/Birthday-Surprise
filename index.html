@@ -43,14 +43,8 @@ body{
   to{opacity:1; transform:translateY(0);}
 }
 
-h1{
-  font-size:2.8em;
-  font-weight:600;
-}
-p{
-  font-size:1.4em;
-  margin-top:14px;
-}
+h1{font-size:2.6em;}
+p{font-size:1.4em;margin-top:14px;}
 
 /* COUNTDOWN */
 #count{
@@ -81,21 +75,30 @@ p{
   0%,100%{transform:translateY(0);}
   50%{transform:translateY(-22px);}
 }
+
+/* TAP HINT */
+.tap{
+  position:absolute;
+  bottom:18px;
+  font-size:14px;
+  opacity:0.6;
+}
 </style>
 </head>
 
 <body>
 
-<!-- SCENE 1 (MATCHES VIDEO FRAME EXACTLY) -->
+<!-- SCENE 1 -->
 <div class="scene active">
-  <h1 class="fade">A very special person</h1>
-  <p class="fade">was born today 👆 🎉</p>
+  <h1 class="fade">Hey Raushani 💖</h1>
+  <p class="fade">Today is your special day</p>
+  <div class="tap">Tap anywhere</div>
 </div>
 
 <!-- SCENE 2 -->
 <div class="scene">
-  <h1 class="fade">Hey Raushani 💖</h1>
-  <p class="fade">Today is your special day</p>
+  <h1 class="fade">A very special person 🎉</h1>
+  <p class="fade">Was born today</p>
 </div>
 
 <!-- SCENE 3 -->
@@ -141,17 +144,17 @@ document.body.addEventListener("click", () => {
   scenes[current].classList.add("active");
 });
 
-/* COUNTDOWN (ONLY WHEN SCENE 3) */
+/* COUNTDOWN (only when visible) */
 let c = 3;
 setInterval(()=>{
   const el = document.getElementById("count");
-  if(el && scenes[2].classList.contains("active") && c > 1){
+  if(el && c > 1 && scenes[2].classList.contains("active")){
     c--;
     el.innerText = c;
   }
 },1000);
 
-/* FIREWORKS (FROM BIRTHDAY SCENE) */
+/* FIREWORKS (only scene 4+) */
 setInterval(()=>{
   if(current >= 3){
     const fw = document.createElement("div");
